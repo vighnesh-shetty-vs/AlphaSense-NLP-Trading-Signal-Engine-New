@@ -18,9 +18,11 @@ st.set_page_config(page_title="AlphaSense | Multi-Asset Terminal", page_icon="ðŸ
 @st.cache_resource
 def setup_nlp():
     try:
+        # Check if lexicon exists
         nltk.data.find('sentiment/vader_lexicon.zip')
     except LookupError:
-        nltk.download('sentiment/vader_lexicon', quiet=True)
+        # Explicitly download to the sentiment directory
+        nltk.download('vader_lexicon', quiet=True)
     return SentimentIntensityAnalyzer()
 
 sia = setup_nlp()
